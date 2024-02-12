@@ -30,6 +30,7 @@
 
 #include "main.h"
 
+#include "physics.h"
 #include "core/config/project_settings.h"
 #include "core/core_globals.h"
 #include "core/core_string_names.h"
@@ -3016,7 +3017,7 @@ Error Main::setup2() {
 
 	MAIN_PRINT("Main: Load Physics");
 
-	initialize_physics();
+	physics::initialize_physics();
 
 	MAIN_PRINT("Main: Load Navigation");
 
@@ -4117,7 +4118,7 @@ void Main::cleanup(bool p_force) {
 
 	// Before deinitializing server extensions, finalize servers which may be loaded as extensions.
 	finalize_navigation_server();
-	finalize_physics();
+	physics::finalize_physics();
 
 	GDExtensionManager::get_singleton()->deinitialize_extensions(GDExtension::INITIALIZATION_LEVEL_SERVERS);
 	uninitialize_modules(MODULE_INITIALIZATION_LEVEL_SERVERS);
